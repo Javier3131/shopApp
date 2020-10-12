@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 
 import './providers/cart.dart';
@@ -10,6 +11,8 @@ import './providers/orders.dart';
 import './screens/orders_screen.dart';
 import './screens/user_products_screen.dart';
 import './screens/edit_product_screen.dart';
+import './screens/auth_screen.dart';
+import './providers/auth.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,6 +26,7 @@ class MyApp extends StatelessWidget {
         // ChangeNotifierProvider.value(value: Orders())
 
         // this is the recommenden approach
+        ChangeNotifierProvider(create: (ctx) => Auth()),
         ChangeNotifierProvider(create: (ctx) => Products()),
         ChangeNotifierProvider(create: (ctx) => Cart()),
         ChangeNotifierProvider(create: (ctx) => Orders()),
@@ -33,7 +37,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Lato',
             primarySwatch: Colors.purple,
             accentColor: Colors.deepOrange),
-        home: ProductOverviewScreen(),
+        home: AuthScreen(),
         routes: {
           ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
           CartScreen.routeName: (ctx) => CartScreen(),
